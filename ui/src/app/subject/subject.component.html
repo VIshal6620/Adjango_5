@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+
+<div align="center">
+    <h1 *ngIf="!form.data.id" style="color: navy;">Add Subject</h1>
+    <h1 *ngIf="form.data.id > 0" style="color: navy;">Update Subject</h1>
+
+    <div style="height: 20px;">
+        <h3 style="color: green;" *ngIf="!form.error && form.message">{{ form.message }}</h3>
+        <h3 style="color: red;" *ngIf="form.error && form.message">{{ form.message }}</h3>
+    </div>
+
+    <table>
+        <!-- Subject Name -->
+        <tr>
+            <th align="left">Name<span style="color:red">*</span></th>
+            <td>
+                <input type="text"
+                       [(ngModel)]="form.data.name"
+                       name="name"
+                       placeholder="Enter Subject Name">
+            </td>
+            <td style="color:red">{{ form.inputerror.name }}</td>
+        </tr>
+
+        <!-- Description -->
+        <tr>
+            <th align="left">Description<span style="color:red">*</span></th>
+            <td>
+                <textarea rows="3"
+                          [(ngModel)]="form.data.description"
+                          name="description"
+                          placeholder="Enter Description">
+                </textarea>
+            </td>
+            <td style="color:red">{{ form.inputerror.description }}</td>
+        </tr>
+
+        <!-- Course -->
+        <tr>
+            <th align="left">Course<span style="color:red">*</span></th>
+            <td>
+                <select [(ngModel)]="form.data.courseId"
+                        name="courseId">
+                    <option value="">--Select Course--</option>
+                    <option *ngFor="let c of form.preload.courseList"
+                            [value]="c.id">
+                        {{ c.name }}
+                    </option>
+                </select>
+            </td>
+            <td style="color:red">{{ form.inputerror.courseId }}</td>
+        </tr>
+
+        <!-- Buttons -->
+        <tr>
+            <td colspan="3" align="center">
+                <button (click)="submit()">Save</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<app-footer></app-footer>

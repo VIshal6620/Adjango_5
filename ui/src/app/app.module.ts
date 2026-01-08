@@ -1,0 +1,81 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './login/signup.component';
+import { HttpServiceService } from './http-service.service';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { UserComponent } from './user/user.component'
+import { EndpointServiceService } from './endpoint-service.service';
+import { ServiceLocatorService } from './service-locator.service';
+import { RoleComponent } from './role/role.component';
+import { CollegeComponent } from './college/college.component';
+import { CourseComponent } from './course/course.component';
+import { SubjectComponent } from './subject/subject.component';
+import { MarksheetComponent } from './marksheet/marksheet.component';
+import { TimetableComponent } from './timetable/timetable.component';
+import { FacultyComponent } from './faculty/faculty.component';
+import { StudentComponent } from './student/student.component';
+import { UserListComponent } from './user/user-list.component';
+
+import { FacultyListComponent } from './faculty/faculty-list.component';
+
+import { ChangepasswordComponent } from './user/changepassword.component';
+import { ForgetpasswordComponent } from './user/forgetpassword.component';
+import { RoleListComponent } from './role/rolelist.component';
+import { CollegeListComponent } from './college/college-list.component';
+import { CourseListComponent } from './course/course-list.component';
+import { SubjectListComponent } from './subject/subjectlist.component';
+import { MarksheetListComponent } from './marksheet/marksheetlist.component';
+import { StudentListComponent } from './student/studentlist.component';
+import { TimetableListComponent } from './timetable/timetablelist.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    DashboardComponent,
+    LoginComponent,
+    SignupComponent,
+    NavbarComponent,
+    FooterComponent,
+    UserComponent,
+    RoleComponent,
+    CollegeComponent,
+    CourseComponent,
+    SubjectComponent,
+    MarksheetComponent,
+    TimetableComponent,
+    FacultyComponent,
+    StudentComponent,
+    UserListComponent,
+    RoleListComponent,
+    CollegeListComponent,
+    CourseListComponent,
+    SubjectListComponent,
+    FacultyListComponent,
+    MarksheetListComponent,
+    StudentListComponent,
+    TimetableListComponent,
+    ChangepasswordComponent,
+    ForgetpasswordComponent,
+    
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+  ],
+  providers: [
+    HttpServiceService,
+    EndpointServiceService,
+    ServiceLocatorService
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
