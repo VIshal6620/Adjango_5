@@ -6,12 +6,13 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-RUN npm run build -- --configuration production
+RUN npm run build --configuration production
 
 # Stage 2 – Nginx
 FROM nginx:alpine
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /app/dist/*/ /usr/share/nginx/html
+
+# 🔥 Angular 15+ compatible
+COPY --from=build /app/dist/*/browser/ /usr/share/nginx/html
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
