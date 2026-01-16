@@ -1,4 +1,4 @@
-# -------- Build Stage --------
+# ---------- Build Stage ----------
 FROM node:18 AS build
 WORKDIR /app
 
@@ -8,13 +8,13 @@ RUN npm install
 COPY . .
 RUN npm run build --configuration=production
 
-# -------- Run Stage --------
+# ---------- Run Stage ----------
 FROM nginx:alpine
 
-# IMPORTANT: Angular project name yahan match karo
+# Angular build copy (⚠ project name "ui" hona chahiye)
 COPY --from=build /app/dist/ui /usr/share/nginx/html
 
-# Angular routing fix
+# Nginx routing config
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
