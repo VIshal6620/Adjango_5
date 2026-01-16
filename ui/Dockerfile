@@ -1,25 +1,29 @@
-# ---------- Build stage ----------
-FROM node:18 AS build
+# Step 1 — Build Angular
+FROM node:18-alpine AS build
+
 WORKDIR /app
 
+# Copy package files first (better caching)
 COPY package*.json ./
+
 RUN npm install
 
+# Copy full Angular project
 COPY . .
-RUN npm run build --configuration=production
+
+# Build Angular in production mode
+RUN npm run build --prod
 
 
-# ---------- Nginx stage ----------
+# Step 2 — Serve using Nginx
 FROM nginx:alpine
 
-# remove default config
-RUN rm /etc/nginx/conf.d/default.conf
+# Remove default Nginx site
+RUN rm -rf /usr/share/nginx/html/*
 
-# COPY nginx.conf FIRST
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# then copy build output
-COPY --from=build /app/dist/ui /usr/share/nginx/html
+# Copy Angular dist output
+COPY --from=build /app/dist/sop-django-ui /usr/share/nginx/html
 
 EXPOSE 80
+
 CMD ["nginx", "-g", "daemon off;"]
