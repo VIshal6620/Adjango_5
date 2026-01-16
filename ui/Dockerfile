@@ -22,7 +22,7 @@ FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy Angular dist output
-COPY --from=build /app/dist/sop-django-ui /usr/share/nginx/html
+COPY --from=build /app/dist/ui/usr/share/nginx/html
 
 EXPOSE 80
 
